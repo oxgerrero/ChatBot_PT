@@ -32,3 +32,7 @@ def get_answer(msg: Message):
         "answer": answer,
         "sources": [doc.id for doc in docs]
     }
+
+@router.get("/")
+def read_root():
+    return {"message": "ChatBot_PT API - Bienvenido"}
