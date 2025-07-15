@@ -1,8 +1,10 @@
-FROM node:18-alpine as builder
-WORKDIR /app
-COPY . .
-RUN npm install && npm run build
+FROM node:20
 
-FROM nginx:alpine
-COPY --from=builder /app/dist/ /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
+
+COPY . .
+
+RUN npm install -g @angular/cli@16
+RUN npm install
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]
